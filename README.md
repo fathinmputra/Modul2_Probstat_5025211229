@@ -18,9 +18,19 @@ melakukan aktivitas 𝐴 sebanyak 70.**
   **1a.)** **Carilah Standar Deviasi dari data selisih pasangan pengamatan tabel diatas**
 
   **1b.)** **carilah nilai t (p-value)**
-
+  
+  **1b.)** **tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴”**
 
 ## NO. 2
+> **(Hipotesa 1 sampel) Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. (Kerjakan menggunakan library seperti referensi pada modul). **
+> 
+  **2a.)** **Apakah Anda setuju dengan klaim tersebut?**
+
+  **2b.)** **Jelaskan maksud dari output yang dihasilkan!**
+  
+  **2b.)** **Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!!**
+
+## NO. 3
 > **(Hipotesa 2 sampel) Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.**
 > 
 > <img width="323" alt="image" src="https://user-images.githubusercontent.com/103252800/206852836-ae3397e6-1840-40cc-837f-17455d2d840e.png">
@@ -30,12 +40,19 @@ melakukan aktivitas 𝐴 sebanyak 70.**
 diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada
 rata-ratanya (α= 0.05)? Buatlah :**
   
-  **2a.)** **H0 dan H1(3)**
+  **3a.)** **H0 dan H1(3)**
 
-  **2b.)** **Hitung Sampel Statistik(3)**
+  **3b.)** **Hitung Sampel Statistik(3)**
   
+  **3c.)** **Lakukan Uji Statistik (df =2)(5)**
   
-## NO. 3
+  **3d.)** **Nilai Kritikal(3)**
+    
+  **3e.)** **Keputusan(3)**  
+  
+  **3f.)** **Kesimpulan(3)**
+  
+## NO. 4
 > **(Anova satu arah) Seorang Peneliti sedang meneliti spesies dari kucing di ITS.
 Dalam penelitiannya ia mengumpulkan data tiga spesies kucing yaitu kucing oren,
 kucing hitam dan kucing putih dengan panjangnya masing-masing.
@@ -45,14 +62,22 @@ H0 : Tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya
 sama
 Maka Kerjakan atau Carilah:**
   
-  **3a.)** **Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1,grup
+  **4a.)** **Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1,grup
 2,grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.**
 
-  **3b.)** **carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang
+  **4b.)** **carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang
 didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?**
 
+  **4c.)** **Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1. **
+  
+  **4d.)** **Dari Hasil Poin C , Berapakah nilai-p ? ,  Apa yang dapat Anda simpulkan dari H0?**
+  
+  **4e.)** **Verifikasilah jawaban model 1 dengan Post-hooc test TukeyHSD ,  dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.**
+  
+  **4f.)** **Visualisasikan data dengan ggplot2**
 
-## NO. 4
+
+## NO. 5
 > **(Anova dua arah) Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut:**
 >  
 > **Data Hasil Eksperimen.** 
@@ -61,11 +86,15 @@ didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?**
 > 
 > **Dengan data tersebut:**
   
-  **4a.)** **Buatlah plot sederhana untuk visualisasi data**
+  **5a.)** **Buatlah plot sederhana untuk visualisasi data**
 
-  **4b.)** **Lakukan uji ANOVA dua arah untuk 2 faktor**
+  **5b.)** **Lakukan uji ANOVA dua arah untuk 2 faktor**
 
-  **4c.)** **Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)**
+  **5c.)** **Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)**
+  
+  **5d.)** **Lakukan uji Tukey**
+    
+  **5e.)** **Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey**
 
 
 

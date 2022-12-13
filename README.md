@@ -307,6 +307,7 @@ Menggunakan fungsi `TukeyHSD()` dilakukan verifikasi jawaban model 1 .
 TukeyHSD(aov(model1))
 ```
 Dengan signifikan level = 0.05 , didapatkan hasil sebagai berikut :
+
 <img width="480" alt="image" src="https://user-images.githubusercontent.com/103252800/207242044-8d8dcfff-cbf5-4e88-aa8c-26d877ad392f.png">
 
 ```
@@ -391,6 +392,7 @@ print(tukeyGlassTempLight)
 
 ```
 Maka, ditampilkan hasil sebagai berikut :
+
 <img width="404" alt="image" src="https://user-images.githubusercontent.com/103252800/207246325-e29213fe-694c-41db-a99c-4078f695f96b.png">
 
     

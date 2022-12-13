@@ -248,35 +248,90 @@ Grup 1
 qqnorm(Grup1$Length)
 qqline(Grup1$Length)
 ```
-
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207239860-e07f2737-7bee-4418-8c43-81859cd3a56b.png">
 
 Grup 2
 ```
 qqnorm(Grup2$Length)
 qqline(Grup2$Length)
 ```
-![Uploading image.png…]()
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207239719-a628455f-a61d-4a91-bf79-11e01c1e23b5.png">
 
 Grup 3
 ```
 qqnorm(Grup3$Length)
 qqline(Grup3$Length)
 ```
-
-
-# Juga dilakukan pemeriksaan masing-masing value dalam grup yang dihasilkannya.
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207239976-ef06baf9-8b77-4693-b2e2-59992b403cec.png">
 
   **4b.)** **carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang
 didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?**
+Menentukan H0 dan H1 terlebih dahulu
+```
+H0 : Tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya sama 
+H1 : Minimal ada sepasang spesies yang memiliki perbedaan panjang atau rata-rata panjangnya berbeda.
+```
+
+Menggunakan fungsi `bartlett.test()`, didapatkan hasil `Bartlett's K-squared = 0.43292, df = 2, p-value = 0.8054`.
+```
+bartlett.test(Length~Group, data=data_anovaSatuArah)
+```
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207240688-ba0f381a-a3c7-4b0b-b8f8-920b60827ba6.png">
+
+Didapatkan p-value sebesar 0.8054, p-value lebih besar dari signifikan level(α=0.05) yang artinya varians dari ketiga kelompok nilainya sama. Kesimpulannya, terdapat homogenitas varians untuk melakukan anova satu arah (one way).
 
   **4c.)** **Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1. **
+
+Menggunakan fungsi `lm()` dan `anova()` dibuatlah model linier dengan Panjang versus Grup dengan diberi `model 1`.
+```
+model1 = lm(Length ~ Group, data = data_anovaSatuArah)
+anova(model1)
+```
+  <img width="480" alt="image" src="https://user-images.githubusercontent.com/103252800/207241182-54b1e502-b614-418d-bcb0-1618f1587456.png">
   
   **4d.)** **Dari Hasil Poin C , Berapakah nilai-p ? ,  Apa yang dapat Anda simpulkan dari H0?**
+
+Berdasarkan hasil yang didapatkan dari poin C :
+```
+Signifikan level = 0.05
+Berdasarkan hasil poin C, didapatkan P-Value dari tabel F, yaitu P-Value = 0,0013
+Sedangkan, F-Value dari hasil perhitungan ANOVA satu arah, yaitu F-Value = 7,0982
+F-Value > P-Value
+```
+Sehingga, kesimpulannya adalah menolak H0 atau menunjukkan bahwa Minimal ada sepasang spesies yang memiliki perbedaan panjang atau rata-rata panjangnya berbeda.
   
   **4e.)** **Verifikasilah jawaban model 1 dengan Post-hooc test TukeyHSD ,  dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.**
   
-  **4f.)** **Visualisasikan data dengan ggplot2**
+Menggunakan fungsi `TukeyHSD()` dilakukan verifikasi jawaban model 1 .
+```
+TukeyHSD(aov(model1))
+```
+Dengan signifikan level = 0.05 , didapatkan hasil sebagai berikut :
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/103252800/207242044-8d8dcfff-cbf5-4e88-aa8c-26d877ad392f.png">
 
+```
+Dari Hasil yang didapatkan, terdapat 3 kelompok (masing-masing 2 spesies) untuk membandingkan masing-masing spesies kucing.
+
+Jika P-Value yang didapatkan nilainya lebih besar dari signifikan level = 0.05 , maka memiliki panjang yang sama.
+Sedangkan, jika P-Value yang didapatkan nilainya lebih kecil dari signifikan level = 0.05 , maka memiliki panjang yang berbeda.
+
+P-Value Kucing Hitam-Kucing Oren  = 0.0020955 < 0.05 (PANJANGNYA BERBEDA)
+P-Value Kucing Putih-Kucing Oren  = 0.8726158 > 0.05 (PANJANGNYA SAMA)
+P-Value Kucing Putih-Kucing Hitam = 0.0098353 < 0.05 (PANJANGNYA BERBEDA)
+```
+Sehingga, dapat disimpulkan bahwa Minimal ada sepasang spesies yang memiliki perbedaan panjang atau rata-rata panjangnya berbeda.
+(Sesuai dengan kesimpulan dari No. 4d)
+  
+  **4f.)** **Visualisasikan data dengan ggplot2**
+Menggunakan fungsi `ggplot()` dibuat sebuah visualisasi data.
+```
+ggplot(data_anovaSatuArah, aes(x = Group, y = Length)) +
+  geom_boxplot(color = c("#FF8C00", "#000000", "#A9A9A9")) +
+  scale_x_discrete() + xlab("Grup") + ylab("Panjang (cm)")
+```
+
+Visualisasi data yang dihasilkan sebagai berikut :
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207242635-f250bb48-28be-4764-88aa-f56990f74760.png">
 
 ## NO. 5
 > **(Anova dua arah) Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut:**

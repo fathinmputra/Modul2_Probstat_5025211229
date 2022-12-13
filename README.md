@@ -343,17 +343,82 @@ Visualisasi data yang dihasilkan sebagai berikut :
 > **Dengan data tersebut:**
   
   **5a.)** **Buatlah plot sederhana untuk visualisasi data**
+Pertama-tama, diinputkan terlebih dahulu data yang telah disediakan menggunakan fungsi `read.csv()`. Kemudian, dibuatlah plot sederhana untuk visualisasi data menggunakan fungsi `qplot()`.
+
+```
+GlassTempLight <- read_csv("C:/Users/Fathin Muhashibi P/Downloads/GTL.csv")
+
+qplot(x = Temp, y = Light, geom = "point", data = GlassTempLight) + facet_grid(.~Glass, labeller = label_both)
+```
+Sehingga, ditampilkan plot sebagai berikut :
+
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/103252800/207243646-a885567b-80f3-4324-b769-7de6d495ab86.png">
 
   **5b.)** **Lakukan uji ANOVA dua arah untuk 2 faktor**
 
+Untuk melakukan uji ANOVA dua arah untuk 2 faktor, pertama-tama dibuat terlebih dahulu variabel as factor sebagai suatu anova, kemudian dilakukan Analisis of Variace.
+```
+GlassTempLight $Glass <- as.factor(GlassTempLight $Glass)
+GlassTempLight $Temp_Factor <- as.factor(GlassTempLight $Temp)
+str(GlassTempLight)
+
+anova <- aov(Light ~ Glass*Temp_Factor, data = GlassTempLight)
+summary(anova)
+```
+
+<img width="478" alt="image" src="https://user-images.githubusercontent.com/103252800/207244986-a2aceb7c-5a12-4f54-9c61-1e64020f090f.png">
+
+
   **5c.)** **Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)**
+
+Untuk menampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi), digunakan fungsi `group_by()`, `summarise()` dan `arrange()`. Kemudian dicetak menggunakan fungsi `print()`.
+```
+SummaryData <- group_by(GlassTempLight, Glass, Temp) %>%
+  summarise(mean=mean(Light), sd=sd(Light)) %>%
+  arrange(desc(mean))
+print(SummaryData)
+```
+<img width="479" alt="image" src="https://user-images.githubusercontent.com/103252800/207245448-3e87e478-92e6-4715-8b6e-4002509d6ddc.png">
+
   
   **5d.)** **Lakukan uji Tukey**
+
+Untuk melakukan uji Tukey digunkan fungsi `TukeyHSD()`  dan dicetak menggunakan fungsi `print()`.
+
+```
+tukeyGlassTempLight <- TukeyHSD(anova)
+print(tukeyGlassTempLight)
+
+```
+Maka, ditampilkan hasil sebagai berikut :
+<img width="404" alt="image" src="https://user-images.githubusercontent.com/103252800/207246325-e29213fe-694c-41db-a99c-4078f695f96b.png">
+
     
   **5e.)** **Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey**
 
+Pertama-tama, perlu diinstall packages dan library berikut :
+```
+install.packages("multcompView")
+library(multcompView)
+```
 
+Kemudian, dibuat suatu compact letter display menggunakan fungsi `multcompLetters4()` dan dicetak menggunakan fungsi `print()`.
+```
+tukey.cld <- multcompLetters4(anova, tukeyGlassTempLight)
+print(tukey.cld)
+```
+Maka, ditampilkan hasil sebagai berikut :
 
+<img width="477" alt="image" src="https://user-images.githubusercontent.com/103252800/207247866-13314014-5611-40f8-aa6e-8d5604017d5f.png">
 
-  
- 
+Selanjutnya, dilakukan penambahan kolom mean dan sd(standar deviasi) ke tabel compact letter display menggunakan fungsi `as.data.frame.list()` , `SummaryData$Tukey <- cld$Letters` , dan dicetak menggunakan fungsi `print()`.
+
+```
+cld <- as.data.frame.list(tukey.cld$`Glass:Temp_Factor`)
+SummaryData$Tukey <- cld$Letters
+print(SummaryData)
+```
+Maka, ditampilkan hasil sebagai berikut :
+
+<img width="481" alt="image" src="https://user-images.githubusercontent.com/103252800/207248057-e9090410-9898-4359-83b7-323710cd1aba.png">
+
